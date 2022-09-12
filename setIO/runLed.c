@@ -9,13 +9,13 @@ void runKasus2();
 
 int main(void)
 {
-	setIO();
-	while (1) { runKasus1(); }
+	setIO(); // SetOutput
+	while (1) { runKasus1(); } // Infitinite Loop()
 }
 
 void setIO() 
 {
-	DDRB = 0xFF; // SetOutput
+	DDRB = 0xFF;
 	PORTB = 0x80;
 }
 
