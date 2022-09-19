@@ -4,21 +4,21 @@
 
 int main();
 void setIO();
-void runKasus1();
+void runTugas1();
 
 int main(void)
 {
 	setIO(); // SetOutput
-	while (1) { runTugas1(); } // Infitinite Loop()
+	while (1) { runTugas1();} // Infitinite Loop()
 }
 
-void setIO() 
+void setIO()
 {
 	DDRB = 0xFF;
 	PORTB = 0x80;
 }
 
-void runTugas1() 
+void runTugas1()
 {
 	for (int i = 0; i < 14; i++)
 	{
