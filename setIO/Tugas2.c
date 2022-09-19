@@ -4,7 +4,6 @@
 
 int main();
 void setIO();
-void runKasus1();
 void runKasus2();
 
 int main(void)
