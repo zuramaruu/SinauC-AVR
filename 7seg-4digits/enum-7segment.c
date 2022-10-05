@@ -24,6 +24,7 @@
 #define DIG3            0x02
 #define DIG4            0x01
 
+int i;
 
 char arr[] = {SATU};
 char arr2[] = {DUA, SATU};
@@ -37,7 +38,7 @@ int  main();
 void setIO();
 void loop();
 void set(vchar *, char val,vchar *,  char pos);
-void iterate(int num, char value[], char position[]);
+void iterate(int num, char value[]);
 
 int main(void) { setup(); while (1) { loop(); } }
 
@@ -49,16 +50,16 @@ void setup() {
 void loop() {
         for (i = 0; i < 4; i++) {
                 switch (i) {
-                        case 0: iterate(1, arr, ord); break;
-                        case 1: iterate(2, arr2, ord); break;
-                        case 2: iterate(3, arr3, ord); break;
-                        case 3: iterate(4, arr4, ord); break;
+                        case 0: iterate(1, arr); break;
+                        case 1: iterate(2, arr2); break;
+                        case 2: iterate(3, arr3); break;
+                        case 3: iterate(4, arr4); break;
                 }
         }
 }
 
-void iterate(int num, char value[], char position[]){
-        int i; for (i = 0; i < num; i++) { set(&PORTD, value[i], &PORTB, position[i]); _delay_ms(500);}
+void iterate(int num, char value[]){
+        int j; for (j = 0; j < num; j++) { set(&PORTD, value[j], &PORTB, ord[j]); _delay_ms(500);}
 }
 
 void set(vchar *port_x, char val, vchar *port_y, char pos) {
