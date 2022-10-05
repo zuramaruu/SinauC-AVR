@@ -24,13 +24,12 @@
 #define DIG3            0x02
 #define DIG4            0x01
 
-int i, j, k, l, m;
+
 char arr[] = {SATU};
 char arr2[] = {DUA, SATU};
 char arr3[] = {TIGA, DUA, SATU};
 char arr4[] = {EMPAT, TIGA, DUA, SATU};
 char ord[] = {DIG1, DIG2, DIG3, DIG4};
-
 
 uint8_t state = 0;
 
