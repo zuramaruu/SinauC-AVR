@@ -11,18 +11,19 @@
 #define SATU            0xF9
 #define DUA             0xA4
 #define TIGA            0x30
-#define EMPAT           0x19
 #define MATI            0xFF
 
 #define digit           PORTB
 #define data            PORTC
 #define Output          0xFF
 
+#define sum             4
+
 int i, j, a;
 
 vint dig[] = {PB0, PB1, PB2, PB3};
 
-char alldata[4][4] =    {{NOL, MATI, MATI, MATI},
+char alldata[sum][4] =    {{NOL, MATI, MATI, MATI},
                         {SATU, NOL, MATI, MATI},
                         {DUA, SATU, NOL, MATI},
                         {TIGA, DUA, SATU, NOL}};
@@ -30,8 +31,8 @@ char alldata[4][4] =    {{NOL, MATI, MATI, MATI},
 int  main();
 void setup();
 void loop();
+void iterate(char _data[sum][4]);
 void set(vint *, char val);
-void iterate(char _data[4][4]);
 
 int main(void) { setup(); while (1) { loop(); } }
 
@@ -44,7 +45,7 @@ void loop() {
         iterate(alldata);
 }
 
-void iterate(char _data[4][4]){
+void iterate(char _data[sum][4]){
         for (a = 0; a < 4; a++) {
                 for (i = 0; i <= 270; i++){
                         for (j = 0; j < 4; j++){
