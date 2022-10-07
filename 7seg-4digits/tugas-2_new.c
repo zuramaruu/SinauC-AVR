@@ -23,7 +23,7 @@ int i, j, a;
 
 vint dig[] = {PB0, PB1, PB2, PB3};
 
-char alldata[sum][4] =    {{NOL, MATI, MATI, MATI},
+char alldata[sum][4] =  {{NOL, MATI, MATI, MATI},
                         {SATU, NOL, MATI, MATI},
                         {DUA, SATU, NOL, MATI},
                         {TIGA, DUA, SATU, NOL}};
@@ -46,7 +46,7 @@ void loop() {
 }
 
 void iterate(char _data[sum][4]){
-        for (a = 0; a < 4; a++) {
+        for (a = 0; a < sum; a++) {
                 for (i = 0; i <= 270; i++){
                         for (j = 0; j < 4; j++){
                                 set(&dig[j], _data[a][j]);
