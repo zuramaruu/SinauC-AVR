@@ -10,7 +10,7 @@
 #define NOL             0xC0
 #define SATU            0xF9
 #define DUA             0xA4
-#define TIGA            0x30
+#define TIGA            0xB0
 #define MATI            0xFF
 
 #define digit           PORTB
