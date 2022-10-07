@@ -6,7 +6,6 @@
 #define  F_CPU 1000000UL
 #include "util/delay.h"
 
-#define vchar    volatile unsigned char
 #define vint     volatile unsigned int
 #define NOL             0xC0
 #define SATU            0xF9
@@ -19,20 +18,20 @@
 #define data            PORTC
 #define Output          0xFF
 
-int i, j;
+int i, j, a;
 
 vint dig[] = {PB0, PB1, PB2, PB3};
 
-char data1[] = {NOL, MATI, MATI, MATI};
-char data2[] = {SATU, NOL, MATI, MATI};
-char data3[] = {DUA, SATU, NOL, MATI};
-char data4[] = {TIGA, DUA, SATU, NOL};
+char alldata[4][4] =    {{NOL, MATI, MATI, MATI},
+                        {SATU, NOL, MATI, MATI},
+                        {DUA, SATU, NOL, MATI},
+                        {TIGA, DUA, SATU, NOL}};
 
 int  main();
 void setup();
 void loop();
 void set(vint *, char val);
-void iterate(char _data[]);
+void iterate(char _data[4][4]);
 
 int main(void) { setup(); while (1) { loop(); } }
 
@@ -42,17 +41,16 @@ void setup() {
 }
 
 void loop() {
-        run(data1);
-        run(data2);
-        run(data3);
-        run(data4);
+        iterate(alldata);
 }
 
-void run(char _data[]){
-        for (i = 0; i <= 270; i++){
-                for (j = 0; j < 4; j++){
-                        set(&dig[j], _data[j]);
-                }       
+void iterate(char _data[4][4]){
+        for (a = 0; a < 4; a++) {
+                for (i = 0; i <= 270; i++){
+                        for (j = 0; j < 4; j++){
+                                set(&dig[j], _data[a][j]);
+                        }       
+                }
         }
 }
 
