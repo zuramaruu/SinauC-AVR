@@ -12,9 +12,6 @@
 #define pinModeB DDRB
 #define pinModeC DDRC
 
-#define OUTPUT 1
-#define INPUT 0
-
 int main(void);
 void setup();
 void loop();

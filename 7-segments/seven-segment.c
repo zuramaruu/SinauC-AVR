@@ -1,4 +1,5 @@
 #include "config/config.h"
+#include "utils/utils.h"
 
 vint dig[] = {PB0, PB1, PB2, PB3};
 
@@ -7,11 +8,11 @@ char alldata[sum][4] =  {{NOL, MATI, MATI, MATI},
                         {DUA, SATU, NOL, MATI},
                         {TIGA, DUA, SATU, NOL}};
 
-int i, j, a;
+int i, j, a; 
 
 void setup() {
-        DDRB = Output;
-        DDRC = Output;
+        pinMode(PB, OUTPUT);
+        pinMode(PC, OUTPUT);
 }
 
 void loop() {
