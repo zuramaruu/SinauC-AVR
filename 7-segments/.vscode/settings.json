@@ -31,7 +31,9 @@
         "iom8hva.h": "c",
         "delay_basic.h": "c",
         "inttypes.h": "c",
-        "utils.h": "c"
+        "utils.h": "c",
+        "interrupt.h": "c",
+        "millis.h": "c"
     },
     "C_Cpp.dimInactiveRegions": false
 }

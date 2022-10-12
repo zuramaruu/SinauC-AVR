@@ -1,4 +1,5 @@
 #Main application file name
+# MAIN_APP = seven-segment
 MAIN_APP = seven-segment
 #Main hex file path in windows format
 MAIN_HEX_PATH = D:\WinAVR\Script\LED_test\$(MAIN_APP).hex
