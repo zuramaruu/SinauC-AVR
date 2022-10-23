@@ -2,9 +2,9 @@
 2. Ganti nama Main Hex Path pada Makefile
 3. Ganti nama Main Path
 
-Template:
-#include "../config/config.h"
-#include "../utils/utils.h"
+Template: </br>
+#include "../config/config.h" </br>
+#include "../utils/utils.h" </br>
 
 void setup() {}
 
