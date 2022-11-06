@@ -1,0 +1,17 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "files.associations": {
+            "*.ejs": "html",
+            "io.h": "c",
+            "delay.h": "c",
+            "utils.h": "c",
+            "config.h": "c",
+            "arduino.h": "c"
+        }
+    }
+}
