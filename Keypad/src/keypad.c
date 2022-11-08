@@ -15,6 +15,7 @@ const char arr[4][4] = {{'/', '9', '8', '7'},
 
 char txt[10];
 uint8_t cursor = 0, index = 0;
+int numbers[2], result, op;
 
 void setup()
 {
@@ -42,9 +43,28 @@ void loop()
                                 lcd_gotoxy(cursor, 1);
                                 lcd_putc(key);
                                 txt[index] = key;
+                                numbers[2] = atoi(txt);
 
                                 cursor++;
                                 index++;
+                        }
+                }
+                else
+                {
+                        if (key != '=')
+                        {
+                                numbers[1] = numbers[2];
+                                op = key;
+                        }
+                        else
+                        {
+                                switch (op)
+                                {
+                                case '+':
+                                        break;
+                                case '-':
+                                        break;
+                                }
                         }
                 }
         }

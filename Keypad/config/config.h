@@ -13,6 +13,8 @@
 #include "cfg.h"
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <ctype.h>
 
 #define NOL 0xC0
 #define SATU 0xF9
