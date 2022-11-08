@@ -15,7 +15,6 @@ const char arr[4][4] = {{'/', '9', '8', '7'},
 
 char txt[10];
 uint8_t cursor = 0, index = 0;
-int numbers[2], result, op;
 
 void setup()
 {
@@ -26,47 +25,19 @@ void setup()
         lcd_init(LCD_DISP_ON_CURSOR);
         lcd_gotoxy(0, 0);
         lcd_puts("PROGRAM KEYPAD");
+        lcd_gotoxy(0, 1);
 }
 
 void loop()
 {
-        lcd_gotoxy(cursor, 1);
         char key = getKey();
         if (key != NO_KEY)
         {
-                if (isdigit(key))
-                {
-                        if (cursor == MAX_INDEX)
-                                reset();
-                        else
-                        {
-                                lcd_gotoxy(cursor, 1);
-                                lcd_putc(key);
-                                txt[index] = key;
-                                numbers[2] = atoi(txt);
-
-                                cursor++;
-                                index++;
-                        }
-                }
-                else
-                {
-                        if (key != '=')
-                        {
-                                numbers[1] = numbers[2];
-                                op = key;
-                        }
-                        else
-                        {
-                                switch (op)
-                                {
-                                case '+':
-                                        break;
-                                case '-':
-                                        break;
-                                }
-                        }
-                }
+                lcd_putc(key);
+                // if (isdigit(key))
+                // {
+                //         lcd_putc(key);
+                // }
         }
 }
 
