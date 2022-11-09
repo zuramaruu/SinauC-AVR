@@ -14,7 +14,7 @@ const char arr[4][4] = {{'/', '9', '8', '7'},
                         {'+', '=', '0', 'c'}};
 
 char txt[10];
-uint8_t cursor = 0, index = 0;
+uint8_t cursor = RESET, index = RESET;
 
 void setup()
 {
@@ -29,49 +29,55 @@ void setup()
 
 void loop()
 {
-        lcd_gotoxy(cursor, 1);
         char key = getKey();
         if (key != NO_KEY)
         {
-                if (isdigit(key))
+                if (cursor == MAX_INDEX)
+                        reset();
+                else
                 {
-                        if (cursor == MAX_INDEX)
-                                reset();
-                        else
-                        {
-                                lcd_gotoxy(cursor, 1);
-                                lcd_putc(key);
-                                txt[index] = key;
+                        lcd_gotoxy(cursor, 1);
+                        lcd_putc(key);
+                        txt[index] = key;
 
-                                cursor++;
-                                index++;
-                        }
+                        cursor++;
+                        index++;
                 }
         }
 }
 
-char getKey()
+char getScanning()
 {
-        char buff = NO_KEY;
-        uint8_t read;
         PORTA = 0xff;
+        char buff = NO_KEY;
         for (uint8_t i = 0; i < 4; i++)
         {
                 PORTA <<= 1;
                 if (i > 0)
                         PORTA |= 0x01;
+
                 for (uint8_t j = 0; j < 4; j++)
                 {
                         if (!(PINA & (0x80 >> j)))
                                 buff = arr[i][j];
                 }
-                do
-                {
-                        read = PINA;
-                        read = read & 0xf0;
-                } while (read != 0xf0);
         }
         return buff;
+}
+
+char getKey()
+{
+        char key = NO_KEY;
+        while (getScanning() != NO_KEY)
+        {
+                // Ga ngapa" in
+        }
+
+        do
+        {
+                key = getScanning();
+        } while (key == NO_KEY);
+        return key;
 }
 
 void reset()
