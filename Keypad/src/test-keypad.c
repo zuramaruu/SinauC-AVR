@@ -1,9 +1,8 @@
 #include "../config/config.h"
 #include "../utils/utils.h"
 #include "../include/lcd.h"
+#include "../utils/millis.h"
 
-#define DEC 10
-#define micro2Sec(us) (us * 1000000)
 #define NO_KEY '\0'
 #define MAX_INDEX 10
 #define RESET 0
@@ -13,22 +12,30 @@ const char arr[4][4] = {{'/', '9', '8', '7'},
                         {'-', '3', '2', '1'},
                         {'+', '=', '0', 'c'}};
 
-char txt[10];
-uint8_t cursor = RESET, index = RESET;
+uint8_t cursor = 0;
+
+uint32_t u_time;
+char buff[4];
 
 void setup()
 {
-        DDRA = 0x0f;
-        DDRB = 0xff;
-        DDRC = 0xff;
-        PORTA = 0xf0; // R pull up (on)
+        DDRA = 0x0f;  // 0000 1111
+        DDRC = 0xff;  // LCD
+        PORTA = 0xf0; // R pull up 1111 0000
         lcd_init(LCD_DISP_ON_CURSOR);
         lcd_gotoxy(0, 0);
-        lcd_puts("PROGRAM KEYPAD");
+        lcd_puts("TIME:");
+        init_millis(16000000UL);
+        sei();
 }
 
 void loop()
 {
+        lcd_gotoxy(5, 0);
+        utoa(millis(), buff, 10);
+        lcd_puts(buff);
+
+        lcd_gotoxy(0, 1);
         char key = getKey();
         if (key != NO_KEY)
         {
@@ -38,17 +45,16 @@ void loop()
                 {
                         lcd_gotoxy(cursor, 1);
                         lcd_putc(key);
-                        txt[index] = key;
 
                         cursor++;
-                        index++;
                 }
         }
 }
 
-char getScanning()
+char getKey()
 {
         PORTA = 0xff;
+        uint8_t read;
         char buff = NO_KEY;
         for (uint8_t i = 0; i < 4; i++)
         {
@@ -61,31 +67,19 @@ char getScanning()
                         if (!(PINA & (0x80 >> j)))
                                 buff = arr[i][j];
                 }
+                do
+                {
+                        read = PINA;
+                        read = read & 0xf0;
+                } while (read != 0xf0);
         }
         return buff;
-}
-
-char getKey()
-{
-        char key = NO_KEY;
-        while (getScanning() != NO_KEY)
-        {
-                // Ga ngapa" in
-        }
-
-        do
-        {
-                key = getScanning();
-        } while (key == NO_KEY);
-        return key;
 }
 
 void reset()
 {
         lcd_clrscr();
         lcd_gotoxy(0, 0);
-        lcd_puts("PROGRAM KEYPAD");
-        memset(txt, 0, sizeof(txt));
-        index = RESET;
+        lcd_puts("TIME:");
         cursor = RESET;
 }
