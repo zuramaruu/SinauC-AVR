@@ -56,16 +56,16 @@ int main(void) {
                                 if (key == CLEAR) reset();
                                 else if (key == EQUALS) {
 
-                                        double eqInt;
+                                        long eqInt;
 
                                         switch (OP) {
-                                        case ADD: eqInt = atoi(num[0]) + atoi(num[1]); break;
-                                        case SUBS: eqInt = atoi(num[0]) - atoi(num[1]); break;
+                                        case ADD: eqInt = atol(num[0]) + atol(num[1]); break;
+                                        case SUBS: eqInt = atol(num[0]) - atol(num[1]); break;
                                         case MULTIPLIED: eqInt = atoi(num[0]) * atoi(num[1]); break;
                                         case DIVIDED: eqInt = atoi(num[0]) / atoi(num[1]); break;
                                         }
 
-                                        itoa(eqInt, num[3], 10);
+                                        ltoa(eqInt, num[3], 10);
 
                                         lcd_gotoxy(0, 1);
                                         lcd_puts(num[3]);
@@ -79,11 +79,13 @@ int main(void) {
 
                         if (key == CLEAR) reset();
                         else {
-                                num[2][indx[1]] = key;
-                                indx[1]++;
+                                if (indx[1] < 16) {
+                                        num[2][indx[1]] = key;
+                                        indx[1]++;
 
-                                lcd_gotoxy(15 - indx[1] + 1, 0);
-                                lcd_puts(num[2]);
+                                        lcd_gotoxy(15 - indx[1] + 1, 0);
+                                        lcd_puts(num[2]);
+                                }
                         }
                 }
         }
