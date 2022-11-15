@@ -61,8 +61,8 @@ int main(void) {
                                         switch (OP) {
                                         case ADD: eqInt = atol(num[0]) + atol(num[1]); break;
                                         case SUBS: eqInt = atol(num[0]) - atol(num[1]); break;
-                                        case MULTIPLIED: eqInt = atoi(num[0]) * atoi(num[1]); break;
-                                        case DIVIDED: eqInt = atoi(num[0]) / atoi(num[1]); break;
+                                        case MULTIPLIED: eqInt = atol(num[0]) * atol(num[1]); break;
+                                        case DIVIDED: eqInt = atol(num[0]) / atol(num[1]); break;
                                         }
 
                                         ltoa(eqInt, num[3], 10);
