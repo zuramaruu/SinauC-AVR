@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <ctype.h>
+
 // #include "millis.h"
 #include "lcd.h"
 
@@ -25,7 +26,7 @@ const char arr[4][4] = { {'/', '9', '8', '7'},
                          {'+', '=', '0', 'c'} };
 
 uint8_t cursor = 0;
-bool n_value = false;
+uint8_t n_value = 0;
 char num[4][16];
 int indx[2] = { 0, 0 };
 char OP;
@@ -72,7 +73,7 @@ int main(void) {
                                 }
                                 else {
                                         OP = key;
-                                        n_value = true;
+                                        n_value = 1;
                                         indx[0] = 0;
                                 }
                         }
@@ -122,7 +123,7 @@ void reset(void) {
 
         }
 
-        n_value = false;
+        n_value = 0;
         indx[0] = 0;
         indx[1] = 0;
         cursor = RESET;
