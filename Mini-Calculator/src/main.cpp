@@ -5,11 +5,14 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <ctype.h>
-
-// #include "millis.h"
 #include "lcd.h"
 
 #define LED_ON
+#define USING_MILLIS
+
+#ifdef USING_MILLIS
+#include "millis.h"
+#endif
 
 #define NO_KEY '\0'
 #define MAX_INDEX 10
@@ -48,8 +51,10 @@ int main(void) {
         lcd_clrscr();
         lcd_init(LCD_DISP_ON_CURSOR);
 
-        // init_millis(16000000UL);
-        // sei();
+#ifdef USING_MILLIS
+        init_millis(16000000UL);
+        sei();
+#endif
 
         while (1) {
                 lcd_gotoxy(15, 0);
