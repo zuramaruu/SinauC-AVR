@@ -27,7 +27,7 @@ const char arr[4][4] = { {'/', '9', '8', '7'},
 
 uint8_t cursor = 0;
 uint8_t n_value = 0;
-char num[4][16];
+char num[3][16];
 int indx[2] = { 0, 0 };
 char OP;
 
@@ -57,19 +57,24 @@ int main(void) {
                                 if (key == CLEAR) reset();
                                 else if (key == EQUALS) {
 
-                                        long eqInt;
+                                        double res;
+                                        double x = double(atol(num[0]));
+                                        double y = double(atol(num[1]));
 
                                         switch (OP) {
-                                        case ADD: eqInt = atol(num[0]) + atol(num[1]); break;
-                                        case SUBS: eqInt = atol(num[0]) - atol(num[1]); break;
-                                        case MULTIPLIED: eqInt = atol(num[0]) * atol(num[1]); break;
-                                        case DIVIDED: eqInt = atol(num[0]) / atol(num[1]); break;
+
+                                        case ADD: res = x + y; break;
+                                        case SUBS: res = x - y; break;
+                                        case MULTIPLIED: res = x * y; break;
+                                        case DIVIDED: res = x / y; break;
+
                                         }
 
-                                        ltoa(eqInt, num[3], 10);
+                                        char str[35];
+                                        dtostrf(res, 0, 3, str);
 
                                         lcd_gotoxy(0, 1);
-                                        lcd_puts(num[3]);
+                                        lcd_puts(str);
                                 }
                                 else {
                                         OP = key;
