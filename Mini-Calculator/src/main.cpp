@@ -7,8 +7,8 @@
 #include <ctype.h>
 #include "lcd.h"
 
-#define LED_ON
-#define USING_MILLIS
+#define NO_LED_ON
+#define NO_USING_MILLIS
 
 #ifdef USING_MILLIS
 #include "millis.h"
