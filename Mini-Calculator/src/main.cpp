@@ -138,7 +138,7 @@ char getKey(void) {
 void reset(void) {
         for (uint8_t i = 0; i < 4; i++) {
                 for (uint8_t j = 0; j < 16; j++) {
-                        num[i][j] = '\0';
+                        num[i][j] = NO_KEY;
                 }
 
         }
