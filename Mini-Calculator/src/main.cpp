@@ -9,6 +9,8 @@
 // #include "millis.h"
 #include "lcd.h"
 
+#define LED_ON
+
 #define NO_KEY '\0'
 #define MAX_INDEX 10
 #define RESET 0
@@ -39,6 +41,11 @@ int main(void) {
         DDRB = 0xff;  // LED
         DDRC = 0xff;  // LCD
         PORTA = 0xf0; // R pull up 1111 0000
+        lcd_init(LCD_DISP_ON);
+        lcd_gotoxy(0, 0);
+        lcd_puts("STARTING ...");
+        _delay_ms(100);
+        lcd_clrscr();
         lcd_init(LCD_DISP_ON_CURSOR);
 
         // init_millis(16000000UL);
@@ -58,8 +65,8 @@ int main(void) {
                                 else if (key == EQUALS) {
 
                                         double res;
-                                        double x = double(atol(num[0]));
-                                        double y = double(atol(num[1]));
+                                        double x = (double)atol(num[0]);
+                                        double y = (double)atol(num[1]);
 
                                         switch (OP) {
 
@@ -108,7 +115,10 @@ char getKey(void) {
                 for (uint8_t j = 0; j < 4; j++) {
                         if (!(PINA & (0x80 >> j))) {
                                 buff = arr[i][j];
+#ifdef LED_ON
                                 PORTB = (uint8_t)arr[i][j];
+#endif
+                                _delay_ms(3);
                         }
                 }
 
